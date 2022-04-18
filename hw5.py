@@ -14,7 +14,6 @@ reader = Reader(rating_scale=(1, 5))
 print('Loading into Surprise Dataset')
 data = Dataset.load_from_df(df[['userId', 'movieId', 'rating']], reader)
 
-'''
 print('Creating models for task 3c and 3d')
 pmf = SVD(biased=False, verbose=True)
 knn_user = KNNBasic(verbose=True, sim_options={'user_based':'True'})
@@ -29,8 +28,7 @@ cross_validate(knn_user, data, cv=5, measures=['MAE','RMSE'], verbose=True)
 print('knn_item')
 cross_validate(knn_item, data, cv=5, measures=['MAE','RMSE'], verbose=True)
 
-'''
-'''
+
 print('Creating models for task 3e')
 knn_user = {method:KNNBasic(verbose=True, \
                             sim_options={'user_based':'True',\
@@ -48,7 +46,6 @@ for method, user_model in knn_user.items():
 for method, item_model in knn_user.items():
     print(f'Item Model {method}')
     cross_validate(item_model, data, cv=5, measures=['MAE', 'RMSE'], verbose=True)
-'''
 
 print('Creating models for task 3f')
 
